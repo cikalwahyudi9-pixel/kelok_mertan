@@ -1,4 +1,6 @@
 from django.contrib import admin
+from apps.core.admin_mixins import DeleteActionMixin
+
 from .models import Program, DokumentasiProgram
 
 
@@ -9,7 +11,7 @@ class DokumentasiInline(admin.TabularInline):
 
 
 @admin.register(Program)
-class ProgramAdmin(admin.ModelAdmin):
+class ProgramAdmin(DeleteActionMixin, admin.ModelAdmin):
     list_display = ('nama', 'kategori', 'is_published', 'is_featured', 'urutan')
     list_filter = ('kategori', 'is_published', 'is_featured')
     list_editable = ('is_published', 'is_featured', 'urutan')

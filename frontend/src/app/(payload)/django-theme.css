@@ -1,0 +1,394 @@
+/* =============================================
+   ONYX ADMIN DARK THEME — Payload CMS v3
+   Ported from: static/css/jazzmin_custom.css
+   Color Scheme: Hijau kehitaman (Onyx Dark)
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
+
+/* ===========================================
+   BASE: Body & Root
+   =========================================== */
+html, body {
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  background-color: #0e1511 !important;
+  color: #dde4dd !important;
+}
+
+/* ===========================================
+   SIDEBAR / NAV
+   =========================================== */
+
+/* Sidebar container */
+aside,
+.nav,
+.nav__scroll,
+[class*="nav_wrap"],
+[class*="Nav_wrap"] {
+  background-color: #161d19 !important;
+  border-right: 1px solid #3c4a42 !important;
+}
+
+/* "Admin Panel" brand/logo area */
+[class*="nav_brand"],
+[class*="Nav_brand"],
+[class*="brand"] {
+  background-color: #09100c !important;
+  color: #4edea3 !important;
+  font-weight: 700 !important;
+  border-bottom: 1px solid #3c4a42 !important;
+}
+
+/* Group label (Profil, Potensi, Umkm, dll) */
+[class*="nav__group"],
+[class*="NavGroup"],
+[class*="nav-group"],
+.nav__group-label,
+.nav__group-title {
+  color: #bbcabf !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.07em !important;
+  padding: 14px 16px 4px 16px !important;
+}
+
+/* Sembunyikan icon arrow toggle */
+.nav__group-label svg,
+.nav__group-title svg,
+[class*="nav__group"] svg {
+  display: none !important;
+}
+
+/* Nav link item */
+a[class*="nav__link"],
+a[class*="NavLink"],
+.nav__link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 9px 12px 9px 16px !important;
+  margin: 2px 8px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #bbcabf !important;
+  border-radius: 0.5rem !important;
+  text-decoration: none !important;
+  transition: background-color 0.2s, color 0.2s !important;
+  font-family: 'Geist', -apple-system, sans-serif !important;
+}
+
+a[class*="nav__link"] p,
+a[class*="nav__link"] i,
+a[class*="nav__link"] span,
+.nav__link p,
+.nav__link span {
+  color: #bbcabf !important;
+}
+
+/* Hover */
+a[class*="nav__link"]:hover,
+.nav__link:hover {
+  background-color: #242c27 !important;
+  color: #dde4dd !important;
+}
+
+a[class*="nav__link"]:hover svg,
+a[class*="nav__link"]:hover i,
+.nav__link:hover svg {
+  color: #4edea3 !important;
+}
+
+/* Active / current */
+a[class*="nav__link"].active,
+a[class*="nav__link"][aria-current],
+a[class*="nav__link--active"],
+.nav__link.active,
+.nav__link--active {
+  background-color: #242c27 !important;
+  color: #dde4dd !important;
+  border-radius: 0.5rem !important;
+}
+
+a[class*="nav__link"].active svg,
+a[class*="nav__link"].active i,
+.nav__link.active svg,
+.nav__link--active svg {
+  color: #4edea3 !important;
+}
+
+/* Icon in nav */
+a[class*="nav__link"] svg,
+.nav__link svg {
+  width: 15px !important;
+  height: 15px !important;
+  flex-shrink: 0 !important;
+  opacity: 0.75 !important;
+}
+
+/* ===========================================
+   HEADER / TOPBAR
+   =========================================== */
+header,
+[class*="header_"],
+[class*="Header_"],
+.app-header,
+.main-header {
+  background-color: #1a211d !important;
+  border-bottom: 1px solid #3c4a42 !important;
+}
+
+header a,
+header span,
+header button,
+[class*="header_"] *,
+.app-header * {
+  color: #bbcabf !important;
+}
+
+/* ===========================================
+   MAIN CONTENT AREA
+   =========================================== */
+main,
+[class*="main_"],
+[class*="Main_"],
+.content-wrapper,
+[class*="template-default__wrap"] {
+  background-color: #0e1511 !important;
+  color: #dde4dd !important;
+}
+
+/* ===========================================
+   CARDS
+   =========================================== */
+.card,
+[class*="card_"],
+[class*="Card_"] {
+  background-color: #1a211d !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid #334155 !important;
+}
+
+.card-header,
+[class*="card_header"],
+[class*="Card_header"] {
+  background-color: #242c27 !important;
+  border-bottom: 1px solid #334155 !important;
+  color: #dde4dd !important;
+}
+
+/* ===========================================
+   BUTTONS
+   =========================================== */
+.btn,
+button {
+  border-radius: 0.5rem !important;
+  font-weight: 600 !important;
+  border: none !important;
+  font-family: 'Geist', -apple-system, sans-serif !important;
+}
+
+/* Primary (Save/Create) - Blue */
+.btn--style-primary,
+[class*="btn--style-primary"],
+button[type="submit"].btn {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+}
+
+.btn--style-primary:hover,
+[class*="btn--style-primary"]:hover {
+  background-color: #2563eb !important;
+}
+
+/* Secondary - Green */
+.btn--style-secondary,
+[class*="btn--style-secondary"] {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+/* Danger */
+.btn--style-error,
+[class*="btn--style-error"],
+.btn-danger {
+  background-color: #ef4444 !important;
+  color: #fff !important;
+}
+
+/* Custom Dashboard Layout & Cards */
+.onyx-dashboard-card {
+  background-color: #1a211d !important;
+  border: 1px solid #3c4a42 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.onyx-dashboard-header {
+  padding: 16px 20px !important;
+  border-bottom: 1px solid #3c4a42 !important;
+}
+
+.onyx-dashboard-header h3 {
+  margin: 0 !important;
+  color: #dde4dd !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+.onyx-dashboard-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 12px 20px !important;
+  border-bottom: 1px solid #242c27 !important;
+  transition: background-color 0.2s !important;
+}
+
+.onyx-dashboard-row:hover {
+  background-color: #242c27 !important;
+}
+
+.onyx-dashboard-row:last-child {
+  border-bottom: none !important;
+}
+
+.onyx-row-title {
+  color: #8c9b90 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* Custom Dashboard Buttons */
+.onyx-badge-btn {
+  border-radius: 9999px !important; /* Full pill shape */
+  padding: 6px 16px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 70px !important;
+  text-align: center !important;
+}
+
+.onyx-btn-tambah {
+  background-color: #00b377 !important; /* Hijau cerah sesuai screenshot */
+  color: #000 !important; /* Text hitam/gelap */
+}
+
+.onyx-btn-tambah:hover {
+  background-color: #00cc88 !important;
+  color: #000 !important;
+}
+
+.onyx-btn-ubah {
+  background-color: #0d6efd !important; /* Biru cerah sesuai screenshot */
+  color: #fff !important;
+}
+
+.onyx-btn-ubah:hover {
+  background-color: #0b5ed7 !important;
+  color: #fff !important;
+}
+
+/* ===========================================
+   FORMS & INPUTS
+   =========================================== */
+label,
+[class*="field-label"] {
+  color: #bbcabf !important;
+  font-size: 13px !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="url"],
+textarea,
+select,
+.form-control {
+  background-color: #2f3632 !important;
+  border: 1px solid #3c4a42 !important;
+  color: #dde4dd !important;
+  border-radius: 0.5rem !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.form-control:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25) !important;
+  outline: none !important;
+}
+
+/* ===========================================
+   TABLES
+   =========================================== */
+.table,
+table {
+  color: #dde4dd !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd),
+tbody tr:nth-of-type(odd) {
+  background-color: #161d19 !important;
+}
+
+.table-hover tbody tr:hover,
+tbody tr:hover {
+  background-color: #242c27 !important;
+}
+
+.table td, .table th,
+td, th {
+  border-top: 1px solid #3c4a42 !important;
+  color: #dde4dd !important;
+}
+
+.table thead th,
+thead th {
+  border-bottom: 2px solid #3c4a42 !important;
+  color: #bbcabf !important;
+  font-weight: 600 !important;
+  background-color: #1a211d !important;
+}
+
+/* ===========================================
+   BREADCRUMBS
+   =========================================== */
+[class*="step-nav"],
+.breadcrumb {
+  color: #bbcabf !important;
+}
+
+[class*="step-nav"] a,
+.breadcrumb a {
+  color: #bbcabf !important;
+}
+
+/* ===========================================
+   HEADINGS & TEXT
+   =========================================== */
+h1, h2, h3, h4, h5, h6 {
+  color: #dde4dd !important;
+}
+
+/* ===========================================
+   FOOTER
+   =========================================== */
+footer {
+  background-color: #1a211d !important;
+  border-top: 1px solid #3c4a42 !important;
+  color: #bbcabf !important;
+}

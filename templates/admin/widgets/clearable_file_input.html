@@ -1,0 +1,24 @@
+{% if widget.is_initial %}
+<div class="file-upload" style="margin-bottom: 10px;">
+    <div class="current-file" style="margin-bottom: 8px;">
+        {{ widget.initial_text }}: <a href="{{ widget.value.url }}" target="_blank" style="font-weight: 500;">{{ widget.value }}</a>
+        {% if not widget.required %}
+            <input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}" style="display:none;"{% if widget.attrs.disabled %} disabled{% endif %}>
+            <button type="button" class="btn btn-danger btn-sm" style="margin-left: 10px; padding: 2px 10px; font-size: 0.85rem;" onclick="
+                document.getElementById('{{ widget.checkbox_id }}').checked = true;
+                this.parentElement.style.display = 'none';
+                document.getElementById('deleted-msg-{{ widget.name }}').style.display = 'block';
+            "><i class="fas fa-trash-alt"></i> Hapus</button>
+        {% endif %}
+    </div>
+    <div id="deleted-msg-{{ widget.name }}" style="display:none; color:#dc3545; font-size: 0.85rem; margin-bottom: 10px;">
+        <i class="fas fa-info-circle"></i> File ditandai untuk dihapus. Perubahan akan berlaku saat Anda mengklik tombol <strong>Simpan</strong>.
+    </div>
+    <div>
+        {{ widget.input_text }}:
+{% endif %}
+        <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+{% if widget.is_initial %}
+    </div>
+</div>
+{% endif %}

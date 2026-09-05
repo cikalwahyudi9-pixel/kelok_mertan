@@ -1,11 +1,13 @@
 from django.contrib import admin
+from apps.core.admin_mixins import DeleteActionMixin
+
 from django.shortcuts import redirect
 from django.urls import reverse
-from .models import ProfilDesa, FasilitasDesa
+from .models import ProfilDesa, FasilitasDesa, KelompokTani
 
 
 @admin.register(ProfilDesa)
-class ProfilDesaAdmin(admin.ModelAdmin):
+class ProfilDesaAdmin(DeleteActionMixin, admin.ModelAdmin):
     fieldsets = (
         ('Identitas Utama & Lokasi', {
             'fields': ('nama_desa', 'kecamatan', 'kabupaten', 'provinsi',
@@ -49,8 +51,39 @@ class ProfilDesaAdmin(admin.ModelAdmin):
         return redirect(reverse(f'admin:{self.model._meta.app_label}_{self.model._meta.model_name}_add'))
 
 
+from django.utils.html import format_html
+
 @admin.register(FasilitasDesa)
-class FasilitasDesaAdmin(admin.ModelAdmin):
-    list_display = ('nama', 'kategori', 'dusun', 'is_published')
+class FasilitasDesaAdmin(DeleteActionMixin, admin.ModelAdmin):
+    list_display = ('nama', 'kategori', 'dusun', 'is_published', 'aksi_hapus')
     list_filter = ('kategori', 'is_published')
     list_editable = ('is_published',)
+    actions = None  # Menonaktifkan dropdown action (seperti fitur hapus massal)
+
+    def aksi_hapus(self, obj):
+        delete_url = reverse('admin:profil_fasilitasdesa_delete', args=[obj.pk])
+        # Using format_html for safety and FontAwesome for the trash icon (Jazzmin includes FontAwesome)
+        return format_html(
+            '<a href="{}" class="text-danger" style="font-size: 1.2rem; margin-left: 10px;" title="Hapus"><i class="fas fa-trash-alt"></i></a>',
+            delete_url
+        )
+    aksi_hapus.short_description = 'Hapus'
+
+
+@admin.register(KelompokTani)
+class KelompokTaniAdmin(DeleteActionMixin, admin.ModelAdmin):
+    list_display = ('nama', 'kategori', 'ketua', 'jumlah_anggota', 'is_published', 'aksi_hapus')
+    list_filter = ('kategori', 'is_published')
+    list_editable = ('is_published',)
+    search_fields = ('nama', 'ketua')
+    actions = None
+
+    def aksi_hapus(self, obj):
+        delete_url = reverse('admin:profil_kelompoktani_delete', args=[obj.pk])
+        return format_html(
+            '<a href="{}" class="text-danger" style="font-size: 1.2rem; margin-left: 10px;" title="Hapus"><i class="fas fa-trash-alt"></i></a>',
+            delete_url
+        )
+    aksi_hapus.short_description = 'Hapus'
+
+

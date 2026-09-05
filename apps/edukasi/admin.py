@@ -1,16 +1,18 @@
 from django.contrib import admin
+from apps.core.admin_mixins import DeleteActionMixin
+
 from .models import KategoriEdukasi, ItemEdukasi
 
 
 @admin.register(KategoriEdukasi)
-class KategoriEdukasiAdmin(admin.ModelAdmin):
+class KategoriEdukasiAdmin(DeleteActionMixin, admin.ModelAdmin):
     list_display = ('nama', 'slug', 'urutan')
     list_editable = ('urutan',)
     prepopulated_fields = {'slug': ('nama',)}
 
 
 @admin.register(ItemEdukasi)
-class ItemEdukasiAdmin(admin.ModelAdmin):
+class ItemEdukasiAdmin(DeleteActionMixin, admin.ModelAdmin):
     list_display = ('judul', 'kategori', 'pembuat', 'tanggal',
                     'jumlah_download', 'is_published')
     list_filter = ('kategori', 'is_published')

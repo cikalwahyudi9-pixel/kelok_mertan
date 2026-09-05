@@ -1,4 +1,6 @@
 from django.contrib import admin
+from apps.core.admin_mixins import DeleteActionMixin
+
 from .models import KategoriUMKM, UMKM, FotoUMKM, PendampinganBeforeAfter
 
 
@@ -14,12 +16,12 @@ class PendampinganInline(admin.TabularInline):
 
 
 @admin.register(KategoriUMKM)
-class KategoriUMKMAdmin(admin.ModelAdmin):
+class KategoriUMKMAdmin(DeleteActionMixin, admin.ModelAdmin):
     prepopulated_fields = {'slug': ('nama',)}
 
 
 @admin.register(UMKM)
-class UMKMAdmin(admin.ModelAdmin):
+class UMKMAdmin(DeleteActionMixin, admin.ModelAdmin):
     list_display = ('nama_usaha', 'kategori', 'dusun', 'is_published',
                     'is_featured', 'izin_publikasi_kontak')
     list_filter = ('kategori', 'is_published', 'is_featured', 'izin_publikasi_kontak')

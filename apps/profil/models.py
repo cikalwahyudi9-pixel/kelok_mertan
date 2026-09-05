@@ -102,3 +102,29 @@ class FasilitasDesa(models.Model):
 
     def __str__(self):
         return self.nama
+
+
+class KelompokTani(models.Model):
+    """Model untuk data kelompok tani (Wanita / Pria)."""
+    KATEGORI_CHOICES = [
+        ('wanita', 'Kelompok Tani Wanita'),
+        ('pria', 'Kelompok Tani Pria'),
+    ]
+    nama = models.CharField(max_length=200, help_text="Contoh: Kelompok Tani Suka Maju")
+    kategori = models.CharField(max_length=50, choices=KATEGORI_CHOICES)
+    ketua = models.CharField(max_length=150, blank=True)
+    jumlah_anggota = models.PositiveIntegerField(default=0, blank=True)
+    deskripsi = HTMLField(blank=True, help_text="Penjelasan singkat tentang kelompok tani ini")
+    foto_utama = models.ImageField(upload_to='kelompok_tani/', blank=True, null=True)
+    is_published = models.BooleanField(default=True, verbose_name="Tampilkan di Website")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Kelompok Tani'
+        verbose_name_plural = 'Kelompok Tani'
+        ordering = ['kategori', 'nama']
+
+    def __str__(self):
+        return f"{self.nama} ({self.get_kategori_display()})"
+

@@ -279,18 +279,34 @@
 {% block extra_js %}
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 {% if profil and profil.koordinat_lat and profil.koordinat_lng %}
+{% load l10n %}
 <script>
-  const lat = {{ profil.koordinat_lat }};
-  const lng = {{ profil.koordinat_lng }};
+  // Ensure coordinates use dot separator, avoiding JS errors with localized commas
+  const lat = {{ profil.koordinat_lat|unlocalize }};
+  const lng = {{ profil.koordinat_lng|unlocalize }};
+  
   const map = L.map('leaflet-map').setView([lat, lng], 15);
+  
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     maxZoom: 19,
   }).addTo(map);
+  
   L.marker([lat, lng])
     .addTo(map)
     .bindPopup('<strong>{{ desa_nama }}</strong><br>{{ desa_kecamatan }}, {{ desa_kabupaten }}')
     .openPopup();
+
+  // Fix for map rendering inside a hidden Bootstrap tab
+  document.querySelectorAll('a[data-bs-toggle="pill"]').forEach(tab => {
+    tab.addEventListener('shown.bs.tab', function (e) {
+      if (e.target.getAttribute('href') === '#lokasi') {
+        setTimeout(() => {
+          map.invalidateSize();
+        }, 100);
+      }
+    });
+  });
 </script>
 {% endif %}
 {% endblock %}

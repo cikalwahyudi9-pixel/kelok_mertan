@@ -10,9 +10,9 @@
    ============================================= */
 :root {
   /* Brand Colors (Stitch AI Clinical Clarity) */
-  --color-primary: #0f52ba;       /* Sapphire Blue */
-  --color-primary-dark: #003c90;  /* Dark Blue */
-  --color-primary-light: #dce9ff; /* Light Blue */
+  --color-primary: #0ea5e9;       /* Sky Blue */
+  --color-primary-dark: #0284c7;  /* Dark Sky Blue */
+  --color-primary-light: #e0f2fe; /* Light Sky Blue */
   --color-secondary: #10b981;     /* Health Green */
   --color-accent: #ef4444;        /* Alert Red */
 
@@ -161,9 +161,9 @@ img {
   min-height: 92vh;
   background: linear-gradient(
     135deg,
-    rgba(15, 82, 186, 0.90) 0%,
-    rgba(0, 60, 144, 0.85) 50%,
-    rgba(33, 49, 69, 0.85) 100%
+    rgba(14, 165, 233, 0.90) 0%,
+    rgba(2, 132, 199, 0.85) 50%,
+    rgba(15, 23, 42, 0.85) 100%
   ),
   url('../images/hero-bg.jpg') center/cover no-repeat;
   display: flex;

@@ -76,7 +76,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link {% if request.resolver_match.namespace == 'potensi' %}active{% endif %}"
-               href="{% url 'potensi:index' %}">Potensi</a>
+               href="{% url 'potensi:index' %}">Kelok Mertan</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {% if request.resolver_match.namespace == 'umkm' %}active{% endif %}"
@@ -86,9 +86,14 @@
             <a class="nav-link {% if request.resolver_match.namespace == 'insight' %}active{% endif %}"
                href="{% url 'insight:index' %}">Insight</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {% if request.resolver_match.namespace == 'artikel' %}active{% endif %}"
-               href="{% url 'artikel:index' %}">Artikel</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarKelompokTani" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Kelompok Tani
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarKelompokTani">
+              <li><a class="dropdown-item" href="{% url 'profil:kelompok_tani' 'wanita' %}">Kelompok Tani Wanita</a></li>
+              <li><a class="dropdown-item" href="{% url 'profil:kelompok_tani' 'pria' %}">Kelompok Tani Pria</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link {% if request.resolver_match.namespace == 'kegiatan' %}active{% endif %}"
@@ -106,10 +111,7 @@
             <a class="nav-link {% if request.resolver_match.namespace == 'edukasi' %}active{% endif %}"
                href="{% url 'edukasi:index' %}">Edukasi</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {% if request.resolver_match.namespace == 'pages' and request.resolver_match.url_name == 'tentang' %}active{% endif %}"
-               href="{% url 'pages:tentang' %}">Tentang</a>
-          </li>
+
         </ul>
       </div>
     </div>
@@ -182,7 +184,7 @@
           <h6 class="footer-heading">Jelajahi</h6>
           <ul class="footer-links">
             <li><a href="{% url 'profil:index' %}">Profil Desa</a></li>
-            <li><a href="{% url 'potensi:index' %}">Potensi</a></li>
+            <li><a href="{% url 'potensi:index' %}">Kelok Mertan</a></li>
             <li><a href="{% url 'umkm:index' %}">UMKM Mitra</a></li>
             <li><a href="{% url 'galeri:index' %}">Galeri</a></li>
             <li><a href="{% url 'pages:video_profil' %}">Video Profil</a></li>
@@ -192,7 +194,8 @@
         <div class="col-lg-2 col-md-3 col-6">
           <h6 class="footer-heading">Informasi</h6>
           <ul class="footer-links">
-            <li><a href="{% url 'artikel:index' %}">Artikel</a></li>
+            <li><a href="{% url 'profil:kelompok_tani' 'wanita' %}">Kelompok Tani Wanita</a></li>
+            <li><a href="{% url 'profil:kelompok_tani' 'pria' %}">Kelompok Tani Pria</a></li>
             <li><a href="{% url 'kegiatan:index' %}">Kegiatan</a></li>
             <li><a href="{% url 'program:index' %}">Program</a></li>
             <li><a href="{% url 'edukasi:index' %}">Edukasi</a></li>

@@ -1,9 +1,11 @@
 from django.contrib import admin
+from apps.core.admin_mixins import DeleteActionMixin
+
 from .models import Kontribusi
 
 
 @admin.register(Kontribusi)
-class KontribusiAdmin(admin.ModelAdmin):
+class KontribusiAdmin(DeleteActionMixin, admin.ModelAdmin):
     list_display = ('nama', 'jenis', 'created_at', 'is_approved')
     list_filter = ('jenis', 'is_approved')
     list_editable = ('is_approved',)

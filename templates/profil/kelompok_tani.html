@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Kelompok Tani {{ kategori|title }}{% endblock %}
+
+{% block content %}
+{# ===== PAGE HEADER ===== #}
+<section class="page-header" style="background: linear-gradient(135deg, var(--surface-dim), var(--surface-container)); padding: 4rem 0 3rem; margin-bottom: 3rem;">
+  <div class="container text-center">
+    <span class="badge bg-success mb-2 px-3 py-2" style="font-weight: 500; letter-spacing: 1px;">Kelembagaan Desa</span>
+    <h1 class="display-5 fw-bold mb-3" style="color: var(--on-surface);">Kelompok Tani {{ kategori|title }}</h1>
+    <p class="lead" style="color: var(--on-surface-variant); max-width: 600px; margin: 0 auto;">
+      Daftar dan profil Kelompok Tani {{ kategori|title }} yang aktif berkontribusi di Desa Sumberagung.
+    </p>
+  </div>
+</section>
+
+{# ===== CONTENT ===== #}
+<section class="section-py pt-0">
+  <div class="container">
+    {% if kelompok_list %}
+    <div class="row g-4">
+      {% for item in kelompok_list %}
+      <div class="col-lg-4 col-md-6">
+        <div class="card h-100 border-0 shadow-sm" style="border-radius: 1rem; overflow: hidden; transition: transform 0.3s ease;">
+          {% if item.foto_utama %}
+          <div style="height: 200px; overflow: hidden;">
+            <img src="{{ item.foto_utama.url }}" alt="{{ item.nama }}" class="w-100 h-100" style="object-fit: cover;">
+          </div>
+          {% else %}
+          <div style="height: 200px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #4caf50;">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          {% endif %}
+          
+          <div class="card-body p-4">
+            <span class="badge bg-light text-success border border-success mb-2">{{ item.get_kategori_display }}</span>
+            <h3 class="h5 fw-bold mb-3">{{ item.nama }}</h3>
+            
+            <ul class="list-unstyled mb-3" style="font-size: 0.9rem; color: var(--on-surface-variant);">
+              <li class="mb-2"><i class="bi bi-person-badge text-success me-2"></i> <strong>Ketua:</strong> {{ item.ketua|default:"-" }}</li>
+              <li><i class="bi bi-people text-success me-2"></i> <strong>Anggota:</strong> {{ item.jumlah_anggota }} Orang</li>
+            </ul>
+            
+            {% if item.deskripsi %}
+            <hr class="text-muted">
+            <div class="card-text" style="font-size: 0.9rem; color: var(--on-surface-variant);">
+              {{ item.deskripsi|safe }}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+      <div style="font-size: 4rem; color: #ccc; margin-bottom: 1rem;"><i class="bi bi-inbox"></i></div>
+      <h3 class="h5 fw-bold text-muted">Belum Ada Data</h3>
+      <p class="text-muted">Data Kelompok Tani {{ kategori|title }} belum ditambahkan.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

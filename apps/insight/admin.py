@@ -1,4 +1,6 @@
 from django.contrib import admin
+from apps.core.admin_mixins import DeleteActionMixin
+
 from .models import EventKesehatan, DataAgregatKesehatan
 
 
@@ -9,7 +11,7 @@ class DataAgregatInline(admin.TabularInline):
 
 
 @admin.register(EventKesehatan)
-class EventKesehatanAdmin(admin.ModelAdmin):
+class EventKesehatanAdmin(DeleteActionMixin, admin.ModelAdmin):
     list_display = ('nama_kegiatan', 'tanggal', 'dusun', 'jumlah_peserta', 'is_published')
     list_filter = ('is_published', 'tanggal')
     list_editable = ('is_published',)
