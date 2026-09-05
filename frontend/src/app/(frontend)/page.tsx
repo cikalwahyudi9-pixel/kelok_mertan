@@ -19,6 +19,9 @@ export default async function Home() {
               <h1 className="hero-title mt-2">
                 Jelajahi<br /><span className="accent">Dusun Mertan</span>
               </h1>
+              <div className="mt-3 mb-2" style={{ fontSize: '1.3rem', fontWeight: 500, fontStyle: 'italic', color: '#FFD54F', letterSpacing: '0.5px' }}>
+                "Mertan Guyub Rukun Handarbeni"
+              </div>
               <p className="hero-subtitle mt-3 mb-4">
                 Portal informasi mandiri yang menyajikan profil, potensi wisata kereta, UMKM, dan dokumentasi
                 pemberdayaan di Dusun Mertan, Kulon Progo.
