@@ -1,7 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-export default function Home() {
+import { getPayload } from 'payload'
+import configPromise from '@payload-config'
+
+export default async function Home() {
+  const payload = await getPayload({ config: configPromise })
+  const profilGlobal = await payload.findGlobal({ slug: 'profil' }) || {}
+
   return (
     <>
       {/* ===== HERO SECTION ===== */}
@@ -75,14 +81,14 @@ export default function Home() {
             <div className="col-md-3 col-6">
               <div className="stat-card">
                 <i className="bi bi-geo-alt-fill text-primary-custom fs-3 mb-2"></i>
-                <span className="stat-number" style={{ fontSize: '1.1rem' }}>Weleri</span>
+                <span className="stat-number" style={{ fontSize: '1.1rem' }}>{profilGlobal.kecamatan || 'Sentolo'}</span>
                 <span className="stat-label">Kecamatan</span>
               </div>
             </div>
             <div className="col-md-3 col-6">
               <div className="stat-card">
                 <i className="bi bi-building text-primary-custom fs-3 mb-2"></i>
-                <span className="stat-number" style={{ fontSize: '1.1rem' }}>Kendal</span>
+                <span className="stat-number" style={{ fontSize: '1.1rem' }}>{profilGlobal.kabupaten || 'Kulon Progo'}</span>
                 <span className="stat-label">Kabupaten</span>
               </div>
             </div>
