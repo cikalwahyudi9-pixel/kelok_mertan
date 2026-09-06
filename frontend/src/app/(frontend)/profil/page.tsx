@@ -115,10 +115,16 @@ export default async function ProfilPage() {
                 </div>
                 
                 <div className="col-lg-5">
-                  <div className="placeholder-content" style={{ minHeight: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <div className="placeholder-icon">🏡</div>
-                    <span className="placeholder-label">FOTO DESA</span>
-                  </div>
+                  {profil.foto_desa && typeof profil.foto_desa === 'object' && profil.foto_desa.url ? (
+                    <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', height: '100%' }}>
+                      <img src={profil.foto_desa.url} alt="Foto Desa" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                  ) : (
+                    <div className="placeholder-content" style={{ minHeight: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                      <div className="placeholder-icon">🏡</div>
+                      <span className="placeholder-label">FOTO DESA</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -127,8 +133,8 @@ export default async function ProfilPage() {
             <div className="tab-pane fade" id="sejarah">
               <h2 className="section-title">Sejarah Desa</h2>
               <div className="divider"></div>
-              {profil.sejarah ? (
-                <div className="content-html" dangerouslySetInnerHTML={{ __html: profil.sejarah }} />
+              {profil.sejarah_html ? (
+                <div className="content-html" dangerouslySetInnerHTML={{ __html: profil.sejarah_html }} />
               ) : (
                 <div className="placeholder-content">
                   <div className="placeholder-icon">📜</div>
@@ -141,8 +147,8 @@ export default async function ProfilPage() {
             <div className="tab-pane fade" id="kondisi">
               <h2 className="section-title">Kondisi & Wilayah</h2>
               <div className="divider"></div>
-              {profil.kondisi_wilayah ? (
-                <div className="content-html" dangerouslySetInnerHTML={{ __html: profil.kondisi_wilayah }} />
+              {profil.kondisi_wilayah_html ? (
+                <div className="content-html" dangerouslySetInnerHTML={{ __html: profil.kondisi_wilayah_html }} />
               ) : (
                 <div className="placeholder-content">
                   <div className="placeholder-icon">🗺️</div>
@@ -155,8 +161,8 @@ export default async function ProfilPage() {
             <div className="tab-pane fade" id="demografi">
               <h2 className="section-title">Demografi</h2>
               <div className="divider"></div>
-              {profil.demografi ? (
-                <div className="content-html" dangerouslySetInnerHTML={{ __html: profil.demografi }} />
+              {profil.demografi_html ? (
+                <div className="content-html" dangerouslySetInnerHTML={{ __html: profil.demografi_html }} />
               ) : (
                 <div className="placeholder-content">
                   <div className="placeholder-icon"><i className="bi bi-people"></i></div>

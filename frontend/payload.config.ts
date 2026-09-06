@@ -1,6 +1,6 @@
 import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { lexicalEditor, HTMLConverterFeature } from '@payloadcms/richtext-lexical'
 import { s3Storage } from '@payloadcms/storage-s3'
 import { fileURLToPath } from 'url'
 
@@ -35,7 +35,9 @@ export default buildConfig({
       autoGenerate: false,
     },
   },
-  editor: lexicalEditor({}),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [...defaultFeatures, HTMLConverterFeature({})],
+  }),
   collections: [
     {
       slug: 'users',
