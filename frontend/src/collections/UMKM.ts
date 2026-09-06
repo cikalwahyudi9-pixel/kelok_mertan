@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { lexicalHTML } from '@payloadcms/richtext-lexical'
 
 export const UMKM: CollectionConfig = {
   slug: 'umkm',
@@ -30,15 +31,31 @@ export const UMKM: CollectionConfig = {
       type: 'richText',
       label: 'Deskripsi Usaha',
     },
+    lexicalHTML('deskripsi', { name: 'deskripsi_html' }),
     {
       name: 'produk_unggulan',
       type: 'textarea',
       label: 'Produk Unggulan',
     },
     {
+      name: 'lokasi',
+      type: 'text',
+      label: 'Lokasi (Dusun)',
+    },
+    {
+      name: 'kategori',
+      type: 'text',
+      label: 'Kategori Usaha',
+    },
+    {
       name: 'nomor_wa',
       type: 'text',
       label: 'Nomor WhatsApp',
+    },
+    {
+      name: 'sosmed_instagram',
+      type: 'text',
+      label: 'Username Instagram (tanpa @)',
     },
     {
       name: 'foto_usaha',

@@ -77,7 +77,7 @@ export default async function UMKMPage() {
                       {umkm.pemilik && <p className="umkm-card-produk"><i className="bi bi-person"></i> {umkm.pemilik}</p>}
                       {umkm.nomor_wa && <p className="umkm-card-produk"><i className="bi bi-whatsapp"></i> {umkm.nomor_wa}</p>}
                       
-                      <a href="#" className="btn-green" style={{ fontSize: '0.82rem', padding: '0.4rem 1rem' }}>
+                      <a href={`/umkm/${umkm.id}`} className="btn-green" style={{ fontSize: '0.82rem', padding: '0.4rem 1rem' }}>
                         Lihat Detail <i className="bi bi-arrow-right"></i>
                       </a>
                     </div>
