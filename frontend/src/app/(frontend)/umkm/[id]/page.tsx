@@ -25,7 +25,7 @@ export default async function UMKMDetail({ params }: { params: Promise<{ id: str
   }
 
   // Fetch similar UMKM (same category, or just other UMKM)
-  let similarUmkm = []
+  let similarUmkm: any[] = []
   try {
     const similarRes = await payload.find({
       collection: 'umkm',
