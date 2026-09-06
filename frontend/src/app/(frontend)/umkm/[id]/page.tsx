@@ -24,6 +24,35 @@ export default async function UMKMDetail({ params }: { params: Promise<{ id: str
     return notFound()
   }
 
+  // Fetch similar UMKM (same category, or just other UMKM)
+  let similarUmkm = []
+  try {
+    const similarRes = await payload.find({
+      collection: 'umkm',
+      where: {
+        id: { not_equals: id },
+        ...(umkm.kategori ? { kategori: { equals: umkm.kategori } } : {})
+      },
+      limit: 3,
+    })
+    
+    // If no similar category found, just fetch any other UMKM
+    if (similarRes.docs.length === 0) {
+      const anyOtherRes = await payload.find({
+        collection: 'umkm',
+        where: {
+          id: { not_equals: id },
+        },
+        limit: 3,
+      })
+      similarUmkm = anyOtherRes.docs
+    } else {
+      similarUmkm = similarRes.docs
+    }
+  } catch (error) {
+    console.error("Error fetching similar umkm:", error)
+  }
+
   const imageUrl = umkm.foto_usaha && typeof umkm.foto_usaha === 'object' && umkm.foto_usaha.url 
     ? umkm.foto_usaha.url 
     : null;
@@ -176,6 +205,41 @@ export default async function UMKMDetail({ params }: { params: Promise<{ id: str
                   </a>
                 )}
               </div>
+
+              {/* UMKM Serupa Widget */}
+              {similarUmkm.length > 0 && (
+                <div className="card-custom p-4 border-0 shadow-sm" style={{ backgroundColor: 'white' }}>
+                  <h5 className="fw-bold mb-4" style={{ color: '#004d40' }}>UMKM Serupa</h5>
+                  
+                  <div className="d-flex flex-column gap-3 mb-4">
+                    {similarUmkm.map((sim: any) => {
+                      const simImage = sim.foto_usaha && typeof sim.foto_usaha === 'object' && sim.foto_usaha.url
+                        ? sim.foto_usaha.url
+                        : null;
+                      return (
+                        <a href={`/umkm/${sim.id}`} key={sim.id} className="d-flex align-items-center text-decoration-none text-dark">
+                          {simImage ? (
+                            <img src={simImage} alt={sim.nama_usaha} className="rounded" style={{ width: '60px', height: '60px', objectFit: 'cover' }} />
+                          ) : (
+                            <div className="bg-light rounded d-flex justify-content-center align-items-center" style={{ width: '60px', height: '60px' }}>
+                              <i className="bi bi-shop text-muted"></i>
+                            </div>
+                          )}
+                          <div className="ms-3">
+                            <h6 className="mb-1 fw-bold text-primary-custom" style={{ fontSize: '0.95rem' }}>{sim.nama_usaha}</h6>
+                            <small className="text-muted d-block">{sim.lokasi || 'Dusun Mertan'}</small>
+                          </div>
+                        </a>
+                      )
+                    })}
+                  </div>
+
+                  <hr className="mb-3 mt-0" style={{ opacity: 0.1 }} />
+                  <Link href="/umkm" className="text-primary-custom text-decoration-none fw-medium" style={{ fontSize: '0.9rem' }}>
+                    Lihat semua UMKM &rarr;
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
