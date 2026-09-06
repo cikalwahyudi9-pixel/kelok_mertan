@@ -35,7 +35,7 @@ export default async function ProfilPage() {
           </nav>
           <h1 className="page-hero-title">Profil Desa {profil.nama_desa || 'Mertan'}</h1>
           <p className="page-hero-sub">
-            {profil.kecamatan || 'Weleri'}, {profil.kabupaten || 'Kendal'}, {profil.provinsi || 'Jawa Tengah'}
+            {profil.kecamatan || 'Sentolo'}, {profil.kabupaten || 'Kulon Progo'}, {profil.provinsi || 'DI Yogyakarta'}
           </p>
         </div>
       </section>
@@ -170,7 +170,7 @@ export default async function ProfilPage() {
               <h2 className="section-title">Lokasi Desa</h2>
               <div className="divider"></div>
               <p><i className="bi bi-geo-alt-fill text-primary-custom"></i>
-                {profil.nama_desa || 'Mertan'}, {profil.kecamatan || 'Weleri'}, {profil.kabupaten || 'Kendal'}
+                {profil.nama_desa || 'Mertan'}, {profil.kecamatan || 'Sentolo'}, {profil.kabupaten || 'Kulon Progo'}
               </p>
 
               {profil.maps_embed_url ? (
