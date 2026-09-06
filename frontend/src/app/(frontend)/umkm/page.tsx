@@ -63,13 +63,14 @@ export default async function UMKMPage() {
               {umkmList.map((umkm) => (
                 <div key={umkm.id} className="col-lg-3 col-md-6">
                   <div className="umkm-card">
-                    {/* Placeholder image for now since we didn't add image to UMKM schema yet */}
-                    <a href="#">
+                    {umkm.foto_usaha && typeof umkm.foto_usaha === 'object' && umkm.foto_usaha.url ? (
+                      <div className="umkm-card-img" style={{ backgroundImage: `url(${umkm.foto_usaha.url})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '200px', width: '100%', borderRadius: '12px 12px 0 0' }}></div>
+                    ) : (
                       <div className="umkm-card-img d-flex align-items-center justify-content-center"
-                           style={{ background: 'linear-gradient(135deg,#e8f5e9,#f1f8e9)', fontSize: '3rem' }}>
-                        <i className="bi bi-shop"></i>
+                        style={{ height: '200px', backgroundColor: '#e9ecef', borderRadius: '12px 12px 0 0' }}>
+                        <i className="bi bi-shop text-muted" style={{ fontSize: '4rem' }}></i>
                       </div>
-                    </a>
+                    )}
                     
                     <div className="umkm-card-body">
                       <h2 className="umkm-card-name">{umkm.nama_usaha}</h2>

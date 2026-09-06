@@ -40,6 +40,11 @@ export const UMKM: CollectionConfig = {
       type: 'text',
       label: 'Nomor WhatsApp',
     },
+    {
+      name: 'foto_usaha',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Foto Usaha / Produk',
+    },
   ],
 }
-

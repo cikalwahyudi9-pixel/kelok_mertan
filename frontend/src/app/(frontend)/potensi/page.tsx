@@ -38,12 +38,14 @@ export default async function PotensiPage() {
               {potensiList.map((potensi) => (
                 <div key={potensi.id} className="col-lg-4 col-md-6">
                   <div className="umkm-card">
-                    <a href="#">
+                    {potensi.foto && typeof potensi.foto === 'object' && potensi.foto.url ? (
+                      <div className="umkm-card-img" style={{ backgroundImage: `url(${potensi.foto.url})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '200px', width: '100%', borderRadius: '12px 12px 0 0' }}></div>
+                    ) : (
                       <div className="umkm-card-img d-flex align-items-center justify-content-center"
-                           style={{ background: 'linear-gradient(135deg,#e8f5e9,#f1f8e9)', fontSize: '3rem' }}>
+                           style={{ background: 'linear-gradient(135deg,#e8f5e9,#f1f8e9)', fontSize: '3rem', height: '200px', borderRadius: '12px 12px 0 0' }}>
                         <i className="bi bi-star"></i>
                       </div>
-                    </a>
+                    )}
                     
                     <div className="umkm-card-body">
                       {potensi.kategori && <span className="card-category-badge" style={{textTransform: 'uppercase'}}>{potensi.kategori}</span>}
