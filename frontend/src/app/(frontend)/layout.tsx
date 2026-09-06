@@ -134,7 +134,7 @@ export default async function FrontendLayout({
                 <h6 className="footer-heading">Tentang Website</h6>
                 <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7 }}>
                   Jelajahi Mertan adalah platform informasi mandiri yang dikembangkan
-                  sebagai luaran program KKN Universitas Diponegoro di Dusun Mertan.
+                  sebagai luaran program Tim KKN 159 Unit III.B.3 di Dusun Mertan.
                 </p>
                 <a href="#" style={{ fontSize: '0.82rem', color: '#FFD54F' }}>
                   Selengkapnya <i className="bi bi-arrow-right"></i>
@@ -147,7 +147,7 @@ export default async function FrontendLayout({
             <div className="container">
               <span>© 2026 Jelajahi Mertan.</span>
               <span className="mx-2">·</span>
-              <span>Dikembangkan oleh Tim KKN Universitas Diponegoro</span>
+              <span>Dikembangkan oleh Tim KKN 159 Unit III.B.3</span>
               <span className="mx-2">·</span>
               <a href="#" style={{ color: 'rgba(255,255,255,0.4)' }}>Platform Informasi Mandiri</a>
             </div>
