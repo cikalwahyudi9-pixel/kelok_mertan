@@ -1,4 +1,5 @@
 import type { CollectionConfig, GlobalConfig } from 'payload'
+import { lexicalHTML } from '@payloadcms/richtext-lexical'
 
 export const Profil: GlobalConfig = {
   slug: 'profil',
@@ -90,5 +91,10 @@ export const Profil: GlobalConfig = {
       type: 'text',
       label: 'Facebook URL',
     },
+    lexicalHTML('sejarah', { name: 'sejarah_html' }),
+    lexicalHTML('kondisi_wilayah', { name: 'kondisi_wilayah_html' }),
+    lexicalHTML('demografi', { name: 'demografi_html' }),
+    lexicalHTML('visi', { name: 'visi_html' }),
+    lexicalHTML('misi', { name: 'misi_html' }),
   ],
 }
