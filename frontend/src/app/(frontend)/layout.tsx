@@ -12,6 +12,9 @@ export const metadata = {
   description: 'Satu ruang digital untuk mengenal Dusun Mertan melalui profil, potensi wisata kereta, UMKM, kegiatan, dan hasil pemberdayaan masyarakat.',
 }
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default async function FrontendLayout({
   children,
 }: {

@@ -8,6 +8,9 @@ export const metadata = {
   description: 'Profil Desa Mertan — informasi identitas, sejarah, kondisi wilayah, demografi, dan lokasi.',
 }
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default async function ProfilPage() {
   const payload = await getPayload({ config: configPromise })
 
