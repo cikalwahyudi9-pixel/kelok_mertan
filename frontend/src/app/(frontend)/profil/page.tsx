@@ -21,6 +21,15 @@ export default async function ProfilPage() {
   // We don't have Fasilitas in payload currently, so we'll mock it or leave it empty based on schema
   const profil = profilGlobal || {}
 
+  // Automatically extract src if user pastes full iframe html
+  let mapsUrl = profil.maps_embed_url || ''
+  if (mapsUrl.includes('<iframe') && mapsUrl.includes('src="')) {
+    const match = mapsUrl.match(/src="([^"]+)"/)
+    if (match) {
+      mapsUrl = match[1]
+    }
+  }
+
   return (
     <>
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -212,9 +221,9 @@ export default async function ProfilPage() {
                 {profil.nama_desa || 'Mertan'}, {profil.kecamatan || 'Sentolo'}, {profil.kabupaten || 'Kulon Progo'}
               </p>
 
-              {profil.maps_embed_url ? (
+              {mapsUrl ? (
                 <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-md)' }}>
-                  <iframe src={profil.maps_embed_url}
+                  <iframe src={mapsUrl}
                           width="100%" height="450" style={{ border: 0 }} allowFullScreen
                           loading="lazy" referrerPolicy="no-referrer-when-downgrade"
                           title="Lokasi Desa di Google Maps">
