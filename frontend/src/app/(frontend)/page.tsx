@@ -8,6 +8,22 @@ export default async function Home() {
   const payload = await getPayload({ config: configPromise })
   const profilGlobal = await payload.findGlobal({ slug: 'profil' }) || {}
 
+  let youtubeEmbedUrl = ''
+  if (profilGlobal.video_youtube_url) {
+    const url = profilGlobal.video_youtube_url;
+    let videoId = '';
+    if (url.includes('youtube.com/watch?v=')) {
+      videoId = url.split('v=')[1]?.split('&')[0];
+    } else if (url.includes('youtu.be/')) {
+      videoId = url.split('youtu.be/')[1]?.split('?')[0];
+    } else if (url.includes('youtube.com/embed/')) {
+      videoId = url.split('embed/')[1]?.split('?')[0];
+    }
+    if (videoId) {
+      youtubeEmbedUrl = `https://www.youtube.com/embed/${videoId}`;
+    }
+  }
+
   return (
     <>
       {/* ===== HERO SECTION ===== */}
@@ -56,13 +72,27 @@ export default async function Home() {
               </Link>
             </div>
             <div className="col-lg-7">
-              <div className="placeholder-content" style={{ borderRadius: '1rem', padding: '4rem 2rem' }}>
-                <div className="placeholder-icon">🎬</div>
-                <span className="placeholder-label">MENUNGGU VIDEO</span>
-                <p className="mb-0" style={{ fontSize: '0.9rem' }}>
-                  Video profil dusun akan ditampilkan di sini setelah produksi selesai.
-                </p>
-              </div>
+              {youtubeEmbedUrl ? (
+                <div style={{ borderRadius: '1rem', overflow: 'hidden', boxShadow: 'var(--shadow-md)', aspectRatio: '16/9' }}>
+                  <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src={youtubeEmbedUrl} 
+                    title="Video Profil Desa Mertan" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen>
+                  </iframe>
+                </div>
+              ) : (
+                <div className="placeholder-content" style={{ borderRadius: '1rem', padding: '4rem 2rem' }}>
+                  <div className="placeholder-icon">🎬</div>
+                  <span className="placeholder-label">MENUNGGU VIDEO</span>
+                  <p className="mb-0" style={{ fontSize: '0.9rem' }}>
+                    Video profil dusun akan ditampilkan di sini setelah produksi selesai.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
