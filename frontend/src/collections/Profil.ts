@@ -67,7 +67,7 @@ export const Profil: GlobalConfig = {
     },
     {
       name: 'visi',
-      type: 'textarea',
+      type: 'richText',
       label: 'Visi',
     },
     {
