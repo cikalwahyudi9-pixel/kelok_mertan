@@ -67,22 +67,38 @@ export default async function CustomDashboard() {
   const payload = await getPayload({ config: configPromise })
   
   // Ambil beberapa dokumen terbaru dari koleksi utama
-  const [umkmRes, potensiRes, programRes] = await Promise.all([
+  const [umkmRes, potensiRes, programRes, galeriRes, edukasiRes, kegiatanRes, insightRes, profilGlobal] = await Promise.all([
     payload.find({ collection: 'umkm', sort: '-updatedAt', limit: 3 }),
     payload.find({ collection: 'potensi', sort: '-updatedAt', limit: 3 }),
     payload.find({ collection: 'program', sort: '-updatedAt', limit: 3 }),
+    payload.find({ collection: 'galeri', sort: '-updatedAt', limit: 3 }),
+    payload.find({ collection: 'edukasi', sort: '-updatedAt', limit: 3 }),
+    payload.find({ collection: 'kegiatan', sort: '-updatedAt', limit: 3 }),
+    payload.find({ collection: 'insight', sort: '-updatedAt', limit: 3 }),
+    payload.findGlobal({ slug: 'profil' }),
   ])
 
   // Gabungkan dan urutkan berdasarkan updatedAt terbaru
   const allRecent = [
-    ...umkmRes.docs.map(d => ({ title: d.nama_usaha || 'UMKM Tanpa Nama', date: d.updatedAt })),
-    ...potensiRes.docs.map(d => ({ title: d.judul || 'Potensi Tanpa Judul', date: d.updatedAt })),
-    ...programRes.docs.map(d => ({ title: d.judul || 'Program Tanpa Judul', date: d.updatedAt })),
-  ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 10)
+    ...umkmRes.docs.map(d => ({ title: `UMKM: ${d.nama_usaha || 'Baru'}`, date: d.updatedAt })),
+    ...potensiRes.docs.map(d => ({ title: `Potensi: ${d.judul || 'Baru'}`, date: d.updatedAt })),
+    ...programRes.docs.map(d => ({ title: `Program: ${d.judul || 'Baru'}`, date: d.updatedAt })),
+    ...galeriRes.docs.map(d => ({ title: `Galeri: ${d.judul || 'Baru'}`, date: d.updatedAt })),
+    ...edukasiRes.docs.map(d => ({ title: `Edukasi: ${d.judul || 'Baru'}`, date: d.updatedAt })),
+    ...kegiatanRes.docs.map(d => ({ title: `Kegiatan: ${d.judul || 'Baru'}`, date: d.updatedAt })),
+    ...insightRes.docs.map(d => ({ title: `Insight: ${d.judul || 'Baru'}`, date: d.updatedAt })),
+  ]
+  
+  if (profilGlobal && profilGlobal.updatedAt) {
+    allRecent.push({ title: 'Pembaruan Profil Desa', date: profilGlobal.updatedAt })
+  }
+
+  allRecent.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  const topRecent = allRecent.slice(0, 10)
 
   // Jika database kosong sama sekali (baru setup)
-  if (allRecent.length === 0) {
-    allRecent.push({ title: 'Belum ada data ditambahkan', date: '' })
+  if (topRecent.length === 0) {
+    topRecent.push({ title: 'Belum ada data ditambahkan', date: '' })
   }
 
   return (
@@ -135,7 +151,7 @@ export default async function CustomDashboard() {
             <h3>Tindakan terbaru</h3>
           </div>
           <div style={{ padding: '0.75rem' }}>
-            {allRecent.map((action, i) => (
+            {topRecent.map((action, i) => (
               <div key={i} style={{
                 display: 'flex',
                 alignItems: 'flex-start',
@@ -148,7 +164,14 @@ export default async function CustomDashboard() {
                 marginBottom: '2px',
               }}>
                 <span style={{ color: '#0566d9', flexShrink: 0, marginTop: '1px' }}>☑</span>
-                {action.title}
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <span>{action.title}</span>
+                  {action.date && (
+                    <span style={{ fontSize: '0.7rem', color: '#6c7a71' }}>
+                      {new Date(action.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
+                    </span>
+                  )}
+                </div>
               </div>
             ))}
           </div>
