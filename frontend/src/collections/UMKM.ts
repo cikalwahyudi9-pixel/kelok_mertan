@@ -58,6 +58,36 @@ export const UMKM: CollectionConfig = {
       label: 'Username Instagram (tanpa @)',
     },
     {
+      name: 'hasil_pendampingan',
+      type: 'richText',
+      label: 'Hasil Pendampingan KKN',
+    },
+    lexicalHTML('hasil_pendampingan', { name: 'hasil_pendampingan_html' }),
+    {
+      name: 'before_after',
+      type: 'array',
+      label: 'Dokumentasi Before-After',
+      fields: [
+        {
+          name: 'keterangan',
+          type: 'text',
+          label: 'Keterangan (contoh: Pembuatan Logo Baru)',
+        },
+        {
+          name: 'foto_sebelum',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Foto Sebelum',
+        },
+        {
+          name: 'foto_sesudah',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Foto Sesudah',
+        },
+      ],
+    },
+    {
       name: 'foto_usaha',
       type: 'upload',
       relationTo: 'media',

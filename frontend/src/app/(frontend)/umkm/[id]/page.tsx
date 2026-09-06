@@ -74,6 +74,48 @@ export default async function UMKMDetail({ params }: { params: Promise<{ id: str
                     <p style={{ whiteSpace: 'pre-wrap' }}>{umkm.produk_unggulan}</p>
                   </>
                 )}
+
+                {(umkm.hasil_pendampingan_html || (umkm.before_after && umkm.before_after.length > 0)) && (
+                  <>
+                    <hr className="my-4" />
+                    <h3 className="fw-bold mb-3" style={{ color: '#004d40' }}>Hasil Pendampingan KKN</h3>
+                    {umkm.hasil_pendampingan_html && (
+                      <div className="content-html mb-4" dangerouslySetInnerHTML={{ __html: umkm.hasil_pendampingan_html }} />
+                    )}
+                    
+                    {umkm.before_after && umkm.before_after.length > 0 && (
+                      <div className="row g-4 mt-2">
+                        {umkm.before_after.map((item: any, idx: number) => (
+                          <div key={idx} className="col-md-6">
+                            <div className="card shadow-sm border-0 h-100">
+                              <div className="card-header bg-light border-0 py-3 text-center">
+                                <span className="fw-bold text-primary-custom">{item.keterangan || 'Dokumentasi'}</span>
+                              </div>
+                              <div className="card-body p-0 d-flex flex-column flex-sm-row">
+                                <div className="w-100 w-sm-50 border-end border-bottom border-sm-bottom-0 position-relative">
+                                  <div className="position-absolute top-0 start-0 bg-secondary text-white px-2 py-1 small fw-bold" style={{ zIndex: 1, borderBottomRightRadius: '8px' }}>Sebelum</div>
+                                  {item.foto_sebelum?.url ? (
+                                    <img src={item.foto_sebelum.url} alt="Sebelum" className="img-fluid w-100" style={{ height: '200px', objectFit: 'cover' }} />
+                                  ) : (
+                                    <div className="d-flex align-items-center justify-content-center bg-light w-100" style={{ height: '200px' }}>-</div>
+                                  )}
+                                </div>
+                                <div className="w-100 w-sm-50 position-relative">
+                                  <div className="position-absolute top-0 start-0 bg-success text-white px-2 py-1 small fw-bold" style={{ zIndex: 1, borderBottomRightRadius: '8px' }}>Sesudah</div>
+                                  {item.foto_sesudah?.url ? (
+                                    <img src={item.foto_sesudah.url} alt="Sesudah" className="img-fluid w-100" style={{ height: '200px', objectFit: 'cover' }} />
+                                  ) : (
+                                    <div className="d-flex align-items-center justify-content-center bg-light w-100" style={{ height: '200px' }}>-</div>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
             </div>
 
