@@ -67,9 +67,11 @@ export default async function Home() {
                 Saksikan keindahan pemandangan jalur rel kereta api yang melintasi hamparan persawahan di Dusun Mertan melalui video profil
                 kami. Jelajahi pesona alam dan keseharian masyarakat yang terekam dalam lensa.
               </p>
-              <Link href="/video-profil" className="btn-green mt-3">
-                <i className="bi bi-play-circle-fill"></i> Tonton Video Profil
-              </Link>
+              {profilGlobal.video_youtube_url && (
+                <a href={profilGlobal.video_youtube_url as string} target="_blank" rel="noopener noreferrer" className="btn-green mt-3">
+                  <i className="bi bi-youtube"></i> Tonton di YouTube
+                </a>
+              )}
             </div>
             <div className="col-lg-7">
               {youtubeEmbedUrl ? (
