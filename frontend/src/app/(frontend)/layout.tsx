@@ -33,7 +33,7 @@ export default async function FrontendLayout({
               <i className="bi bi-train-front"></i> Jelajahi <span>Mertan</span>
             </a>
             <div className="d-flex align-items-center gap-2 ms-auto order-xl-last">
-              <img src="/images/logokkn-Photoroom.png" alt="Logo KKN" style={{ height: '40px', width: 'auto', borderRadius: '4px' }} className="d-block" />
+              <img src="/images/logokkn-Photoroom.png" alt="Logo KKN" style={{ height: '65px', width: 'auto' }} className="d-block" />
               <button className="navbar-toggler border-0 ms-2" type="button" data-bs-toggle="collapse"
                       data-bs-target="#navbarMain" aria-controls="navbarMain"
                       aria-expanded="false" aria-label="Toggle navigation">
