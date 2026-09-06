@@ -55,6 +55,11 @@ export default async function ProfilPage() {
               </a>
             </li>
             <li className="nav-item">
+              <a className="nav-link filter-btn" href="#visimisi" data-bs-toggle="pill">
+                <i className="bi bi-bullseye me-1"></i> Visi & Misi
+              </a>
+            </li>
+            <li className="nav-item">
               <a className="nav-link filter-btn" href="#kondisi" data-bs-toggle="pill">
                 <i className="bi bi-map me-1"></i> Kondisi Wilayah
               </a>
@@ -141,6 +146,34 @@ export default async function ProfilPage() {
                   <span className="placeholder-label">DATA SEJARAH DESA BELUM TERSEDIA</span>
                 </div>
               )}
+            </div>
+
+            {/* Visi & Misi */}
+            <div className="tab-pane fade" id="visimisi">
+              <div className="row g-4">
+                <div className="col-md-6">
+                  <h2 className="section-title">Visi</h2>
+                  <div className="divider"></div>
+                  {profil.visi_html ? (
+                    <div className="content-html" dangerouslySetInnerHTML={{ __html: profil.visi_html }} />
+                  ) : (
+                    <div className="placeholder-content" style={{ minHeight: '150px' }}>
+                      <span className="placeholder-label">VISI BELUM TERSEDIA</span>
+                    </div>
+                  )}
+                </div>
+                <div className="col-md-6">
+                  <h2 className="section-title">Misi</h2>
+                  <div className="divider"></div>
+                  {profil.misi_html ? (
+                    <div className="content-html" dangerouslySetInnerHTML={{ __html: profil.misi_html }} />
+                  ) : (
+                    <div className="placeholder-content" style={{ minHeight: '150px' }}>
+                      <span className="placeholder-label">MISI BELUM TERSEDIA</span>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
 
             {/* Kondisi Wilayah */}
