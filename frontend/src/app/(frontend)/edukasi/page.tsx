@@ -46,9 +46,13 @@ export default async function EdukasiPage() {
                       <h4 style={{ fontSize: '1.2rem', fontFamily: 'var(--font-heading)' }}>{item.judul}</h4>
                       {item.penulis && <p className="mb-2 text-muted" style={{ fontSize: '0.85rem' }}><i className="bi bi-person"></i> {item.penulis}</p>}
                       
-                      <a href="#" className="btn-outline-green mt-2" style={{ fontSize: '0.85rem' }}>
-                        Lihat / Unduh Modul
-                      </a>
+                      {item.file && typeof item.file === 'object' && item.file.url ? (
+                        <a href={item.file.url} target="_blank" rel="noopener noreferrer" className="btn-outline-green mt-2" style={{ fontSize: '0.85rem' }}>
+                          <i className="bi bi-download me-1"></i> Unduh File
+                        </a>
+                      ) : (
+                        <span className="text-muted mt-2 d-inline-block" style={{ fontSize: '0.85rem', fontStyle: 'italic' }}>Tidak ada file lampiran</span>
+                      )}
                     </div>
                   </div>
                 </div>
