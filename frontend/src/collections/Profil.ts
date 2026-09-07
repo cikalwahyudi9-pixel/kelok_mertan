@@ -82,6 +82,12 @@ export const Profil: GlobalConfig = {
       label: 'URL Video YouTube',
     },
     {
+      name: 'deskripsi_video',
+      type: 'textarea',
+      label: 'Teks Deskripsi di Bagian Video Homepage',
+      defaultValue: 'Saksikan keindahan pemandangan jalur rel kereta api yang melintasi hamparan persawahan di Dusun Mertan melalui video profil kami. Jelajahi pesona alam dan keseharian masyarakat yang terekam dalam lensa.',
+    },
+    {
       name: 'sosmed_instagram',
       type: 'text',
       label: 'Instagram URL',

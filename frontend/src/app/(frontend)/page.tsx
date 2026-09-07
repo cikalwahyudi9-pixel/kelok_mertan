@@ -64,8 +64,7 @@ export default async function Home() {
               <h2 className="section-title">Mengenal Dusun Mertan</h2>
               <div className="divider"></div>
               <p className="mb-4 text-muted">
-                Saksikan keindahan pemandangan jalur rel kereta api yang melintasi hamparan persawahan di Dusun Mertan melalui video profil
-                kami. Jelajahi pesona alam dan keseharian masyarakat yang terekam dalam lensa.
+                {(profilGlobal.deskripsi_video as string) || 'Saksikan keindahan pemandangan jalur rel kereta api yang melintasi hamparan persawahan di Dusun Mertan melalui video profil kami. Jelajahi pesona alam dan keseharian masyarakat yang terekam dalam lensa.'}
               </p>
               {profilGlobal.video_youtube_url && (
                 <a href={profilGlobal.video_youtube_url as string} target="_blank" rel="noopener noreferrer" className="btn-green mt-3">
