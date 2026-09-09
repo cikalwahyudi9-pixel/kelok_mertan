@@ -203,7 +203,7 @@ export default async function Home() {
                       {umkm.lokasi && <p className="umkm-card-produk mb-3" style={{ fontSize: '0.85rem' }}><i className="bi bi-geo-alt"></i> {umkm.lokasi}</p>}
                       
                       <div className="mt-auto">
-                        <Link href={`/umkm/${umkm.id}`} className="btn-green w-100 text-center" style={{ fontSize: '0.82rem', padding: '0.4rem' }}>
+                        <Link href={`/umkm/${umkm.id}`} className="btn-green w-100 text-center d-block text-decoration-none" style={{ fontSize: '0.82rem', padding: '0.4rem' }}>
                           Detail <i className="bi bi-arrow-right"></i>
                         </Link>
                       </div>
