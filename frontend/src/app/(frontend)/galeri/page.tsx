@@ -38,10 +38,14 @@ export default async function GaleriPage() {
               {galeriList.map((item) => (
                 <div key={item.id} className="col-lg-4 col-md-6">
                   <div className="card-custom h-100 overflow-hidden">
-                    <div className="d-flex align-items-center justify-content-center"
-                         style={{ height: '250px', background: 'linear-gradient(135deg,#e8f5e9,#f1f8e9)', fontSize: '3rem' }}>
-                      <i className="bi bi-image"></i>
-                    </div>
+                    {item.foto && typeof item.foto === 'object' && item.foto.url ? (
+                      <img src={item.foto.url} alt={item.judul || 'Galeri'} className="w-100" style={{ height: '250px', objectFit: 'cover' }} />
+                    ) : (
+                      <div className="d-flex align-items-center justify-content-center"
+                           style={{ height: '250px', background: 'linear-gradient(135deg,#e8f5e9,#f1f8e9)', fontSize: '3rem' }}>
+                        <i className="bi bi-image"></i>
+                      </div>
+                    )}
                     <div className="p-3">
                       <h4 style={{ fontSize: '1.1rem', fontFamily: 'var(--font-heading)' }}>{item.judul}</h4>
                       {item.deskripsi && <p className="mb-0 text-muted" style={{ fontSize: '0.9rem' }}>{item.deskripsi}</p>}

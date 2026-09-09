@@ -82,6 +82,12 @@ export const Profil: GlobalConfig = {
       label: 'URL Video YouTube',
     },
     {
+      name: 'judul_video_profil',
+      type: 'text',
+      label: 'Judul Bagian Video Homepage',
+      defaultValue: 'Mengenal Dusun Mertan',
+    },
+    {
       name: 'deskripsi_video',
       type: 'textarea',
       label: 'Teks Deskripsi di Bagian Video Homepage',

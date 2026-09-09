@@ -61,7 +61,7 @@ export default async function Home() {
           <div className="row g-5 align-items-center">
             <div className="col-lg-5">
               <span className="section-label">Tentang Dusun</span>
-              <h2 className="section-title">Mengenal Dusun Mertan</h2>
+              <h2 className="section-title">{(profilGlobal.judul_video_profil as string) || 'Mengenal Dusun Mertan'}</h2>
               <div className="divider"></div>
               <p className="mb-4 text-muted">
                 {(profilGlobal.deskripsi_video as string) || 'Saksikan keindahan pemandangan jalur rel kereta api yang melintasi hamparan persawahan di Dusun Mertan melalui video profil kami. Jelajahi pesona alam dan keseharian masyarakat yang terekam dalam lensa.'}
