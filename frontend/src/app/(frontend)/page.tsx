@@ -29,6 +29,13 @@ export default async function Home() {
     programList = fallback.docs
   }
 
+  const { docs: galeriList } = await payload.find({
+    collection: 'galeri',
+    where: { is_featured: { equals: true } },
+    limit: 6,
+    sort: '-tanggal',
+  })
+
   let youtubeEmbedUrl = ''
   if (profilGlobal.video_youtube_url) {
     const url = profilGlobal.video_youtube_url;
@@ -281,6 +288,53 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* ===== GALERI SECTION ===== */}
+      {galeriList.length > 0 && (
+        <section className="section-py" id="galeri-home">
+          <div className="container">
+            <div className="d-flex justify-content-between align-items-end mb-4">
+              <div>
+                <span className="section-label">Lensa Desa</span>
+                <h2 className="section-title">Galeri Mertan</h2>
+                <div className="divider"></div>
+              </div>
+              <Link href="/galeri" className="btn-outline-custom d-none d-md-inline-block">
+                Lihat Semua <i className="bi bi-arrow-right"></i>
+              </Link>
+            </div>
+
+            <div className="row g-4">
+              {galeriList.map((item) => {
+                const fotoUrl = item.foto && typeof item.foto === 'object' && item.foto.url ? item.foto.url : null;
+                return (
+                  <div key={item.id} className="col-lg-4 col-md-6">
+                    <div className="card-custom h-100 overflow-hidden border-0 shadow-sm">
+                      {fotoUrl ? (
+                        <img src={fotoUrl} alt={item.judul || 'Galeri'} className="w-100" style={{ height: '250px', objectFit: 'cover' }} />
+                      ) : (
+                        <div className="d-flex align-items-center justify-content-center" style={{ height: '250px', background: 'linear-gradient(135deg,#e8f5e9,#f1f8e9)' }}>
+                          <i className="bi bi-image text-muted" style={{ fontSize: '3rem' }}></i>
+                        </div>
+                      )}
+                      <div className="p-3">
+                        <h4 className="fw-bold mb-1" style={{ fontSize: '1.1rem' }}>{item.judul}</h4>
+                        {item.deskripsi && <p className="text-muted mb-0" style={{ fontSize: '0.85rem' }}>{item.deskripsi}</p>}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+            
+            <div className="text-center mt-4 d-md-none">
+              <Link href="/galeri" className="btn-outline-custom">
+                Lihat Semua <i className="bi bi-arrow-right"></i>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
     </>
   )
 }
